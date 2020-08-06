@@ -1,6 +1,8 @@
 var express 	= require('express');
 var exSession 	= require('express-session');
 var bodyParser 	= require('body-parser');
+var registration= require('./controllers/registration');
+var login = require('./controllers/login');
 var coockieParser=require('cookie-parser');
 var app 		= express();
 
@@ -22,10 +24,18 @@ app.use('/jquery', express.static('node_modules/jquery/dist'));
 app.use('/popper',express.static('node_modules/popper.js/dist'));
 app.use('/img',express.static('assets/img'));
 app.use('/files',express.static('assets/files'));
+app.use('/css',express.static('assets/css'));
+app.use('/js',express.static('assets/js'));
 
 /*app.get('/admin/user/:abc/:name', function(req, res){
 	res.send(req.params.abc+" | "+req.params.name);
 });*/
+
+//app.use('/login',login);
+//app.use('/admin',admin);
+//app.use('/doctor',doctor);
+//app.use('/patient',patient);
+app.use('/registration',registration);
 
 app.get('/', function(req, res){
     res.redirect('/login');
