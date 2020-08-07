@@ -7,7 +7,7 @@ function getConnection(callback){
         host	: 'localhost',
         user	: 'root',
         password: '',
-        database: 'test'
+        database: 'mentalhealthcounselingdb'
     });
     con.connect(function(err) {
         if (err) {
@@ -24,13 +24,35 @@ module.exports={
     getResults:function (sql, callback){
         getConnection(function (con){
             con.query(sql, function(error, results){
-                callback(results);
+                if(error){
+                    console.log(error.stack);
+                    callback([]);
+                }else{
+                    callback(results);
+                }
             });
             con.end(function(err){
                 console.log('connection end...');
             });
         });
 
+    },
+    execute: function (sql, callback){
+
+        getConnection(function(connection){
+            connection.query(sql, function(error, results){
+
+                if(error){
+                    callback(false);
+                }else{
+                    callback(true);
+                }
+            });
+
+            connection.end(function(err){
+                console.log('connection end...');
+            });
+        });
     }
 }
 
