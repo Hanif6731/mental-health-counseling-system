@@ -6,6 +6,10 @@ router.get('/',function (req,res){
     res.render('registration/index');
 });
 
+router.get('/doctor',function (req,res){
+    res.render('registration/doctor');
+});
+
 
 
 module.exports=router;
