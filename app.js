@@ -6,6 +6,7 @@ var registration= require('./controllers/registration');
 var login = require('./controllers/login');
 var logout =require('./controllers/logout');
 var coockieParser=require('cookie-parser');
+var fileUpload=require('express-fileupload');
 var app 		= express();
 
 //config
@@ -15,6 +16,7 @@ app.set('view engine', 'ejs');
 
 
 //middleware
+app.use(fileUpload());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(exSession({secret: 'my secret value', saveUninitialized: true, resave: false}));
 app.use(coockieParser());
