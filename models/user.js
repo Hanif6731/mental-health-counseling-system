@@ -25,7 +25,8 @@ module.exports ={
     },
 
     validate: function(user, callback){
-        var sql = "select * from users where username='"+user.username+"' and password='"+user.password+"'";
+        var sql = "select * from users where " +
+            "username='"+user.username+"' and password='"+user.password+"'";
         db.getResults(sql, function(result){
             if(result.length > 0){
                 callback(result);
@@ -36,8 +37,8 @@ module.exports ={
     },
 
     insert: function(user, callback){
-        var sql = "insert into user (username, password, status) " +
-            "values('"+user.username+"', '"+user.password+"', '"+user.type+"')";
+        var sql = "insert into users (username, password, status) " +
+            "values('"+user.username+"', '"+user.password+"', '"+user.status+"')";
 
         console.log(sql);
 
@@ -72,7 +73,7 @@ module.exports ={
     },
 
     delete: function(id, callback){
-        var sql = "delete from user where id="+id;
+        var sql = "delete from users where id="+id;
         db.execute(sql, function(status){
             if(status){
                 callback(true);

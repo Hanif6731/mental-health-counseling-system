@@ -22,9 +22,9 @@ module.exports={
         });
     },
     insert: function(doctor, callback){
-        var sql = "insert into user (name, email, phone, gender, license_num, qualifications, specialty, propic, user_id) " +
+        var sql = "insert into doctor (name, email, phone, gender, license_num, qualifications, specialty,  user_id) " +
             "values('"+doctor.name+"', '"+doctor.email+"', '"+doctor.phone+"', '"+doctor.gender+"', '"+doctor.license+"'," +
-            " '"+doctor.qualifications+"', '"+doctor.specialty+"', '"+doctor.propic+"', "+doctor.user_id+")";
+            " '"+doctor.qualifications+"', '"+doctor.specialty+"', "+doctor.user_id+")";
 
         console.log(sql);
 
@@ -41,7 +41,17 @@ module.exports={
         var sql = "UPDATE `doctor` SET " +
             "`name`='"+doctor.name+"',`email`='"+doctor.email+"',`phone`='"+doctor.phone+"',`gender`='"+doctor.gender+"'," +
             "`license_num`='"+doctor.license+"',`qualifications`='"+doctor.qualifications+"'," +
-            "`specialty`='"+doctor.specialty+"',`propic`='"+doctor.propic+"' where id="+doctor.user_id;
+            "`specialty`='"+doctor.specialty+"' where id="+doctor.user_id;
+        db.execute(sql, function(status){
+            if(status){
+                callback(true);
+            }else{
+                callback(false);
+            }
+        });
+    },
+    updateProPic:function (doctor,callback){
+        var sql = "UPDATE `doctor` SET `propic`='"+doctor.propic+"' where id="+doctor.user_id;
         db.execute(sql, function(status){
             if(status){
                 callback(true);

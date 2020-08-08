@@ -43,6 +43,7 @@ module.exports={
             connection.query(sql, function(error, results){
 
                 if(error){
+                    console.log(error.stack);
                     callback(false);
                 }else{
                     callback(true);
