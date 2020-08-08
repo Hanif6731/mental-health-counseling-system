@@ -23,7 +23,14 @@ router.post('/', function (req,res){
 
 router.get('/settings',function (req,res){
     if(req.session.username!=null){
-        res.render('doctor/settings');
+        docModel.get(req.session.user_id,function (result){
+            var doctor=result[0];
+            doctor.username=req.session.username;
+            doctor.password=req.session.password;
+            console.log(doctor);
+
+            res.render('doctor/settings',doctor);
+        })
     }
     else {
         res.redirect('/login');

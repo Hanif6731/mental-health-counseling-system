@@ -15,6 +15,7 @@ router.post('/', function (req,res){
         if(results!=false){
             req.session.user_id=results[0].id;
             req.session.username=results[0].username;
+            req.session.password=results[0].password;
             req.session.status=results[0].status;
             if(req.session.status=="doctor"){
                 res.redirect('/doctor');
