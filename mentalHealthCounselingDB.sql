@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2020 at 10:43 PM
+-- Generation Time: Aug 08, 2020 at 02:08 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -93,9 +93,18 @@ CREATE TABLE `doctor` (
   `license_num` varchar(50) NOT NULL,
   `qualifications` varchar(50) NOT NULL,
   `specialty` varchar(50) NOT NULL,
-  `propic` varchar(100) NOT NULL,
+  `propic` varchar(100) NOT NULL DEFAULT 'doctor.png',
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `doctor`
+--
+
+INSERT INTO `doctor` (`d_id`, `name`, `email`, `phone`, `gender`, `license_num`, `qualifications`, `specialty`, `propic`, `user_id`) VALUES
+(1, 'Md. Hanif', 'hanif.hf.5@gmail.com', '01738309854', 'Male', 'asdfasewrr32324', 'safsfds', 'Addiction Psychology', 'doctor.png', 3),
+(2, 'Joseph H Gervais', 'pibeben611@link3mail.com', '5102585719', 'Male', 'asdfasewrr32324', 'sdfasfdasfw', 'Addiction Psychology', 'doctor.png', 4),
+(3, 'Rashed', 'R@gmailcom', '2135900722', 'Male', 'asdfasewrr32324', 'dsfgdsg', 'Addiction Psychology', 'doctor.png', 5);
 
 -- --------------------------------------------------------
 
@@ -262,6 +271,15 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `status`, `ammount`) VALUES
+(3, 'hanif', '1234', 'doctor', 0),
+(4, 'browndragon', '1234', 'doctor', 0),
+(5, 'rashed', '1234', 'doctor', 0);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -381,7 +399,8 @@ ALTER TABLE `transaction`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -415,7 +434,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `d_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `d_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `forum`
@@ -481,7 +500,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
