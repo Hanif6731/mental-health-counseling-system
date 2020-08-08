@@ -49,7 +49,7 @@ router.post('/doctor',function (req,res){
             });
         }
         else{
-            res.send("username taken");
+            res.send("username taken </br> <a href='/registration/doctor'>try again</a>");
         }
     });
 
