@@ -22,7 +22,7 @@
                 <a class="nav-link" href="/doctor/settings">Settings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" >Appointments and Schedule</a>
+                <a class="nav-link" href="/appointment" >Appointments and Schedule</a>
             </li>
             <li>
                 <a class="nav-link" href="#">Forum</a>
@@ -50,6 +50,9 @@
                         <input type="submit" class="btn btn-primary" value="Upload"/>
                     </form>
 
+                    <form action="/doctor/edit/<%=d_id%>" method="post">
+                        <input type="hidden" name="user_id" value="<%=user_id%>">
+                        <input type="hidden" name="id" value="<%=d_id%>">
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
@@ -95,7 +98,8 @@
                         <div class="col-12 col-md-3">
                             <div class="form-group">
                                 <label for="gender"><strong>Gender:</strong></label>
-                                <select class="form-control" name="gender" value="<%=gender%>" id="gender">
+                                <select class="form-control" name="gender" id="gender">
+                                    <option selected hidden><%=gender%></option>
                                     <option>Male</option>
                                     <option>Female</option>
                                     <option>Other</option>
@@ -118,7 +122,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="specialty"><strong>Specialty:</strong></label>
-                                <select class="form-control" name="specialty" value="<%=specialty%>" id="specialty">
+                                <select class="form-control" name="specialty" id="specialty">
+                                    <option selected hidden><%=specialty%></option>
                                     <option>Addiction Psychology</option>
                                     <option>Biopsychology</option>
                                     <option>Cognitive Psychology</option>
@@ -145,6 +150,7 @@
                             <input type="submit" class="btn btn-block btn-primary" value="Save" id="submit"/>
                         </div>
                     </div>
+                    </form>
                 </div>
 
             </div>

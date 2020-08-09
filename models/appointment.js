@@ -3,7 +3,7 @@ var db = require('./db');
 module.exports ={
 
     get: function(id, callback){
-        var sql = "select * from users where id="+id;
+        var sql = "select * from appoinment where id="+id;
         db.getResults(sql, function(result){
             if(result.length > 0){
                 console.log(result[0]);
@@ -13,9 +13,31 @@ module.exports ={
             }
         });
     },
+    getForDoc: function(id, callback){
+        var sql = "select * from appoinment where d_id="+id;
+        db.getResults(sql, function(result){
+            if(result.length > 0){
+                console.log(result);
+                callback(result);
+            }else{
+                callback([]);
+            }
+        });
+    },
+    getForPatient: function(id, callback){
+        var sql = "select * from appoinment where p_id="+id;
+        db.getResults(sql, function(result){
+            if(result.length > 0){
+                console.log(result);
+                callback(result);
+            }else{
+                callback([]);
+            }
+        });
+    },
 
     getAll: function(callback){
-        var sql = "select * from users";
+        var sql = "select * from appointment";
         db.getResults(sql, function(result){
             if(result.length > 0){
                 callback(result);
@@ -25,21 +47,9 @@ module.exports ={
         });
     },
 
-    validate: function(user, callback){
-        var sql = "select * from users where " +
-            "username='"+user.username+"' and password='"+user.password+"'";
-        db.getResults(sql, function(result){
-            if(result.length > 0){
-                callback(result);
-            }else{
-                callback(false);
-            }
-        });
-    },
-
-    insert: function(user, callback){
-        var sql = "insert into users (username, password, status) " +
-            "values('"+user.username+"', '"+user.password+"', '"+user.status+"')";
+    request: function(appointment, callback){
+        var sql = "insert into appointment (description, p_id, d_id) " +
+            "values('"+appointment.description+"', "+appointment.p_id+", "+appointment.d_id+")";
 
         console.log(sql);
 
@@ -52,18 +62,11 @@ module.exports ={
         });
     },
 
-    update: function(user, callback){
-        var sql = "update users set username='"+user.username+ "', password='"+user.password+ "' where id="+user.id;
-        db.execute(sql, function(status){
-            if(status){
-                callback(true);
-            }else{
-                callback(false);
-            }
-        });
-    },
-    updateAmount: function (user, callback){
-        var sql = "update users set ammount="+user.amount+" where id="+user.id;
+
+
+    update: function(appointment, callback){
+        var sql = "update appointment set " +
+            "status='"+appointment.status+ "', scheduled_date='"+appointment.scheduled_date+ "' where id="+appointment.id;
         db.execute(sql, function(status){
             if(status){
                 callback(true);
@@ -74,7 +77,7 @@ module.exports ={
     },
 
     delete: function(id, callback){
-        var sql = "delete from users where id="+id;
+        var sql = "delete from appointment where id="+id;
         db.execute(sql, function(status){
             if(status){
                 callback(true);

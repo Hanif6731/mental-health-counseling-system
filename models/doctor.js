@@ -41,7 +41,7 @@ module.exports={
         var sql = "UPDATE `doctor` SET " +
             "`name`='"+doctor.name+"',`email`='"+doctor.email+"',`phone`='"+doctor.phone+"',`gender`='"+doctor.gender+"'," +
             "`license_num`='"+doctor.license+"',`qualifications`='"+doctor.qualifications+"'," +
-            "`specialty`='"+doctor.specialty+"' where d_id="+doctor.user_id;
+            "`specialty`='"+doctor.specialty+"' where d_id="+doctor.id;
         db.execute(sql, function(status){
             if(status){
                 callback(true);
@@ -51,7 +51,8 @@ module.exports={
         });
     },
     updateProPic:function (doctor,callback){
-        var sql = "UPDATE `doctor` SET `propic`='"+doctor.propic+"' where d_id="+doctor.user_id;
+        var sql = "UPDATE `doctor` SET " +
+            "`propic`='"+doctor.propic+"' where d_id="+doctor.user_id;
         db.execute(sql, function(status){
             if(status){
                 callback(true);

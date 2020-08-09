@@ -5,6 +5,7 @@ var doctor  = require('./controllers/doctor');
 var registration= require('./controllers/registration');
 var login = require('./controllers/login');
 var logout =require('./controllers/logout');
+var appointment=require('./controllers/appointment');
 var coockieParser=require('cookie-parser');
 var fileUpload=require('express-fileupload');
 var app 		= express();
@@ -44,6 +45,7 @@ app.use('/logout',logout);
 app.use('/registration',registration);
 app.use('/login',login);
 app.use('/doctor',doctor);
+app.use('/appointment',appointment);
 
 app.get('/', function(req, res){
     res.redirect('/login');
