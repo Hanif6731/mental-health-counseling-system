@@ -14,8 +14,8 @@ function getConnection(callback){
             console.error('error connecting: ' + err.stack);
             return;
         }
-        callback(con);
         console.log('connected as id ' + con.threadId);
+        callback(con);
     });
 }
 

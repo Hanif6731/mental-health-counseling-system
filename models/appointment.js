@@ -3,7 +3,7 @@ var db = require('./db');
 module.exports ={
 
     get: function(id, callback){
-        var sql = "select * from appoinment where id="+id;
+        var sql = "select * from appointment where id="+id;
         db.getResults(sql, function(result){
             if(result.length > 0){
                 console.log(result[0]);
@@ -14,7 +14,7 @@ module.exports ={
         });
     },
     getForDoc: function(id, callback){
-        var sql = "select * from appoinment where d_id="+id;
+        var sql = "select * from appointment where d_id="+id;
         db.getResults(sql, function(result){
             if(result.length > 0){
                 console.log(result);
@@ -25,7 +25,7 @@ module.exports ={
         });
     },
     getForPatient: function(id, callback){
-        var sql = "select * from appoinment where p_id="+id;
+        var sql = "select * from appointment where p_id="+id;
         db.getResults(sql, function(result){
             if(result.length > 0){
                 console.log(result);
@@ -66,7 +66,8 @@ module.exports ={
 
     update: function(appointment, callback){
         var sql = "update appointment set " +
-            "status='"+appointment.status+ "', scheduled_date='"+appointment.scheduled_date+ "' where id="+appointment.id;
+            "status='"+appointment.status+ "', scheduled_date="+appointment.scheduled_date+ " where id="+appointment.id;
+
         db.execute(sql, function(status){
             if(status){
                 callback(true);

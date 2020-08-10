@@ -22,7 +22,7 @@
                     <a class="nav-link" href="/doctor/settings">Settings</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" >Appointments and Schedule</a>
+                    <a class="nav-link" href="/appointment" >Appointments and Schedule</a>
                 </li>
                 <li>
                     <a class="nav-link" href="#">Forum</a>
@@ -39,24 +39,81 @@
 </nav>
 <div class="container mt-2 text-center">
     <div class="row">
-        <div class="col-12 col-md-8 offset-md-2">
+        <div class="col-12 col-md-12 offset-md-0">
             <div class="card">
-                <table class="table table-hover table-striped">
+                <table class="table table-hover table-striped text-center">
                     <thead class="thead-dark">
                         <tr>
                             <th>Patient Id</th>
-                            <th>Patient Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Schedule</th>
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                       <%for (var i =0; i<results.length;i++){%>
+                           <tr>
+                               <td><%=results[i].p_id%></td>
+                               <td><%=results[i].description%></td>
+                               <td><%=results[i].status%></td>
+                               <td><%=results[i].scheduled_date%></td>
+                               <td colspan="2"><button class="btn btn-success <%=results[i].disable%> accept" <%=results[i].disable%> name="accept" id="accept" data-toggle="modal" data-target="#accept<%=results[i].id%>">Accept</button>
+                               <button class="btn btn-danger <%=results[i].disable%> decline" <%=results[i].disable%> name="decline" id="decline"data-toggle="modal" data-target="#decline<%=results[i].id%>">Decline</button> </td>
+                           </tr>
+                      <% }%>
                     </tbody>
                 </table>
             </div>
+
         </div>
         <div class="col-auto">
         </div>
     </div>
+    <%for (var i =0; i<results.length;i++){%>
+    <div class="modal fade" id="accept<%=results[i].id%>" tabindex="-1" aria-labelledby="accept<%=results[i].id%>Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accept<%=results[i].id%>Label">Schedule the session</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/appointment/accept/<%=results[i].id%>">
+                        <div class="form-group">
+                            <label for="scheduled_date">Date</label>
+                            <input type="datetime-local" name="scheduled_date" class="form-control"/>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-success" value="Done"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }%>
+    <%for (var i =0; i<results.length;i++){%>
+    <div class="modal fade" id="decline<%=results[i].id%>" tabindex="-1" aria-labelledby="decline<%=results[i].id%>Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="decline<%=results[i].id%>Label">Are you sure to decline?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a  class="btn btn-primary text-decoration-none" href="/appointment/decline/<%=results[i].id%>">Decline</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }%>
 </div>
 
 <script type="application/javascript" src="/jquery/jquery.min.js"></script>
