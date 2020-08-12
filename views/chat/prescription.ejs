@@ -1,0 +1,119 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Mental Health Counseling System</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark text-white">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand text-white" href="#">MHCS | Counselor Profile settings</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav text-white ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/doctor">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/doctor/settings">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/appointment" >Appointments and Schedule</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">Forum</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chat">Chat</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+
+                    <form action="/chat/session/prescribe/<%=patient_id%>" method="post">
+                        <input type="hidden" name="p_id" value="<%=patient_id%>">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="medicine"><strong>Medicine Name:</strong></label>
+                                    <input type="text" class="form-control" name="medicine" id="medicine" placeholder="Medicine Name"/>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="type"><strong>Type:</strong></label>
+                                    <select class="form-control" name="type" id="type">
+                                        <option>Tablet</option>
+                                        <option>Capsule</option>
+                                        <option>Syrup</option>
+                                        <option>Cream</option>
+                                        <option>Vaccine</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-2">
+                                <div class="form-group">
+                                    <label for="quantity"><strong>Quantity:</strong></label>
+                                    <input type="number" class="form-control" min="1" name="quantity" id="quantity"/>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-2">
+                                <div class="form-group">
+                                    <label for="duration"><strong>Duration:</strong></label>
+                                    <input type="number" class="form-control" min="1" name="duration" id="duration"/>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 col-md-8">
+                                <div class="form-group">
+                                    <label for="timing"><strong>Timing:</strong></label>
+                                    <input type="text" class="form-control" name="timing" id="timing" placeholder="When and how much medicine to take?"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes"><strong>Additional Note:</strong></label>
+                            <textarea class="form-control" name="notes" id="notes"  placeholder="Additional Note"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class=" col-12 col-md-4 offset-md-4">
+                                <input type="submit" class="btn btn-block btn-primary" value="Save and Add more" id="submit"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-auto">
+        </div>
+    </div>
+</div>
+
+<script type="application/javascript" src="/jquery/jquery.min.js"></script>
+<script type="application/javascript" src="/popper/popper.min.js"></script>
+<script type="application/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

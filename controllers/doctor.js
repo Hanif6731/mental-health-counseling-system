@@ -10,7 +10,6 @@ router.get('/',function (req,res){
             docModel.get(req.session.user_id, function (result){
                 console.log(result);
                 req.session.docId=result[0].d_id;
-                console.log(req.session.docId);
                 result[0].username=req.session.username;
                 result[0].amount=results.ammount;
                 res.render('doctor/index',result[0]);

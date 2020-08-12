@@ -14,11 +14,16 @@ if(req.session.user_id!=null){
             timeZone: 'Asia/Dhaka'
         };
         for(let i=0; i<results.length;i++){
+            results[i].start='disabled';
+            if(results[i].status=='accepted'){
+                results[i].start='';
+            }
             if(results[i].scheduled_date!='') {
                 results[i].scheduled_date = new Intl.DateTimeFormat('en-us', options).format(results[i].scheduled_date);
             }
             if(results[i].status!='requested'){
                 results[i].disable='disabled';
+
             }
             else{
                 results[i].disable='';

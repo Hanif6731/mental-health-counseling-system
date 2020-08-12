@@ -28,7 +28,7 @@
                     <a class="nav-link" href="#">Forum</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#">Session</a>
+                    <a class="nav-link" href="/chat">Chat</a>
                 </li>
                 <li>
                     <a class="nav-link" href="/logout">Logout</a>
@@ -49,6 +49,7 @@
                             <th>Status</th>
                             <th>Schedule</th>
                             <th colspan="2">Action</th>
+                            <th>Session options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +61,11 @@
                                <td><%=results[i].scheduled_date%></td>
                                <td colspan="2"><button class="btn btn-success <%=results[i].disable%> accept" <%=results[i].disable%> name="accept" id="accept" data-toggle="modal" data-target="#accept<%=results[i].id%>">Accept</button>
                                <button class="btn btn-danger <%=results[i].disable%> decline" <%=results[i].disable%> name="decline" id="decline"data-toggle="modal" data-target="#decline<%=results[i].id%>">Decline</button> </td>
+                               <td>
+
+                                    <a class="btn btn-primary chat_session <%=results[i].start%>" <%=results[i].start%> href="/chat/session/<%=results[i].p_id%>">Start Chat Session</a>
+
+                               </td>
                            </tr>
                       <% }%>
                     </tbody>
