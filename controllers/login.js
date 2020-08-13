@@ -3,6 +3,7 @@ var router = express.Router();
 var userModel=require('../models/user');
 
 router.get('/',function (req,res){
+    console.log("starting");
     res.render('login/index');
 });
 

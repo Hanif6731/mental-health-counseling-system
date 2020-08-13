@@ -10,16 +10,15 @@
     <script type="application/javascript" src="/socket/socket.io.js"></script>
     <script type="application/javascript" src="/popper/popper.min.js"></script>
     <script type="application/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="/js/chatScript.js"></script>
+    <script type="application/javascript" src="/js/forumScript.js"></script>
 </head>
 <body>
-<input type="hidden" id="user_id" value="<%=user_id%>">
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark text-white">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand text-white" href="#">MHCS | Counselor's Channel</a>
+        <a class="navbar-brand text-white" href="#">MHCS | Forum</a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav text-white ml-auto mt-2 mt-lg-0">
@@ -32,10 +31,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/appointment" >Appointments and Schedule</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/forum">Forum</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/chat">Chat</a>
                 </li>
                 <li>
@@ -49,17 +48,50 @@
 
 <div class="container mt-2">
     <div class="row">
-        <div class="col-12 col-md-7 offset-md-2">
-            <input type="text" required class="form-control" id="msg" placeholder="Massage"/>
-        </div>
-        <div class="col-12 col-md-1 mr-auto">
-            <input type="button" id="send" class="btn btn-primary" value="Send"/>
+        <div class="col-12 col-md-8 offset-md-2">
+            <form method="post" action="/forum/post">
+             <div class="card">
+                 <div class="card-body bg-dark">
+                     <div class="row">
+                         <div class="col-12">
+                             <textarea class="form-control" required name="post" id="post" placeholder="What's on your mind?"></textarea>
+                         </div>
+                     </div>
+                     <div class="row mt-2">
+                         <div class="col-12">
+                             <div class="text-right">
+                                 <input type="submit" id="send" class="btn btn-primary" value="Post"/>
+
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+            </form>
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-8 offset-md-2">
             <div id="content">
 
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="commentModalLabel">Comments</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="commentBody">
+
+                </div>
             </div>
         </div>
     </div>

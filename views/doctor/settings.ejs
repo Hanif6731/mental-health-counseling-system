@@ -25,7 +25,7 @@
                 <a class="nav-link" href="/appointment" >Appointments and Schedule</a>
             </li>
             <li>
-                <a class="nav-link" href="#">Forum</a>
+                <a class="nav-link" href="/forum">Forum</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/chat">Chat</a>
@@ -45,7 +45,7 @@
                     <form method="post" enctype="multipart/form-data" action="/doctor/upload">
                         <div class="form-group">
                             <label for="propic"><strong>Update profile picture:</strong></label>
-                            <input type="file" accept="image/*"  name="propic" class="form-control-file border border-dark rounded"/>
+                            <input type="file" accept="image/*" required  name="propic" class="form-control-file border border-dark rounded"/>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Upload"/>
                     </form>
@@ -57,14 +57,14 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="name"><strong>Full Name:</strong></label>
-                                <input type="text" class="form-control" name="name" id="name" value="<%=name%>" placeholder="Full Name"/>
+                                <input type="text" class="form-control" required name="name" id="name" value="<%=name%>" placeholder="Full Name"/>
                             </div>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="email"><strong>Email:</strong></label>
-                                <input type="email" class="form-control" name="email" id="email" value="<%=email%>" placeholder="Email"/>
+                                <input type="email" class="form-control" required name="email" id="email" value="<%=email%>" placeholder="Email"/>
                             </div>
                         </div>
                     </div>
@@ -72,14 +72,14 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="username"><strong>Username:</strong></label>
-                                <input type="text" class="form-control" name="username" id="username" value="<%=username%>" placeholder="Username"/>
+                                <input type="text" class="form-control" required name="username" id="username" value="<%=username%>" placeholder="Username"/>
                             </div>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="password"><strong>Password:</strong></label>
-                                <input type="password" class="form-control" name="password" id="password" value="<%=password%>" placeholder="Password"/>
+                                <input type="password" class="form-control" required name="password" id="password" value="<%=password%>" placeholder="Password"/>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label for="phone"><strong>Phone:</strong></label>
-                                <input type="text" class="form-control" name="phone" id="phone" value="<%=phone%>" placeholder="Phone"/>
+                                <input type="text" class="form-control" required name="phone" id="phone" value="<%=phone%>" placeholder="Phone"/>
                             </div>
                         </div>
 
@@ -109,13 +109,13 @@
                         <div class="col-12 col-md-5">
                             <div class="form-group">
                                 <label for="license"><strong>License:</strong></label>
-                                <input type="text" class="form-control" name="license" id="license" value="<%=license_num%>" placeholder="License Number"/>
+                                <input type="text" class="form-control" required name="license" id="license" value="<%=license_num%>" placeholder="License Number"/>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="qualifications"><strong>Qualifications:</strong></label>
-                        <textarea class="form-control" name="qualifications" id="qualifications"  placeholder="Educational Qualifications"><%=qualifications%></textarea>
+                        <textarea class="form-control" name="qualifications" required id="qualifications"  placeholder="Educational Qualifications"><%=qualifications%></textarea>
                     </div>
                     <div class="row">
 

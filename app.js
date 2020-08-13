@@ -7,12 +7,12 @@ var login = require('./controllers/login');
 var logout =require('./controllers/logout');
 var appointment=require('./controllers/appointment');
 var chat = require('./controllers/chat');
+var forum =require('./controllers/forum');
 var coockieParser=require('cookie-parser');
 var fileUpload=require('express-fileupload');
 var app 		= express();
 
 
-var http=require('http').createServer(app);
 var io=require('socket.io')(app.listen(3000,function (){
     console.log("Server running on port 3000");
 }));
@@ -27,6 +27,7 @@ app.set('view engine', 'ejs');
 //middleware
 app.use(fileUpload());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 app.use(exSession({secret: 'my secret value', saveUninitialized: true, resave: false}));
 app.use(coockieParser());
 
@@ -56,6 +57,7 @@ app.use('/login',login);
 app.use('/doctor',doctor);
 app.use('/appointment',appointment);
 app.use('/chat',chat);
+app.use('/forum',forum);
 
 app.get('/', function(req, res){
     res.redirect('/login');
