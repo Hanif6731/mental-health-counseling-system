@@ -2,6 +2,7 @@ var express=require('express');
 var router = express.Router();
 var docModel=require('../models/doctor');
 var userModel=require('../models/user');
+var reviewModel=require('../models/review');
 
 router.get('/',function (req,res){
     if(req.session.user_id!=null){
@@ -12,7 +13,15 @@ router.get('/',function (req,res){
                 req.session.docId=result[0].d_id;
                 result[0].username=req.session.username;
                 result[0].amount=results.ammount;
-                res.render('doctor/index',result[0]);
+                reviewModel.get(req.session.docId,function (reviews) {
+                    var data={
+                        result:result[0],
+                        reviews:reviews
+                    };
+                    console.log(data);
+                    res.render('doctor/index',data);
+                });
+
             });
 
         });

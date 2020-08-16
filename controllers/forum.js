@@ -23,7 +23,8 @@ router.get('/post',function (req,res){
 
 router.post('/post',function (req,res){
     if(req.body.post==''){
-        res.redirect('/forum');
+        //res.redirect('/forum');
+        req.send([]);
     }
     else {
         console.log(req.body);
@@ -33,7 +34,8 @@ router.post('/post',function (req,res){
         }
         console.log(post);
         forumModel.insert(post, function (status) {
-            res.redirect('/forum');
+            //res.redirect('/forum');
+            res.send(post);
         });
     }
 });
@@ -48,8 +50,9 @@ router.get('/post/:id/comment',function (req,res){
 });
 router.post('/post/:id/comment',function (req,res){
     console.log('comment');
-    if(req.body.comment==''){
-        res.redirect('/forum');
+    if(req.body.comment=={}){
+        //res.redirect('/forum');
+        res.send([]);
     }
     else {
         console.log(req.body);
@@ -60,7 +63,8 @@ router.post('/post/:id/comment',function (req,res){
         }
         console.log(comment);
         commentModel.insert(comment, function (status) {
-            res.redirect('/forum');
+            //res.redirect('/forum');
+            res.send(comment);
         });
     }
 });

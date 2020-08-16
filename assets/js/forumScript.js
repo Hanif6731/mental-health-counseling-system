@@ -7,6 +7,45 @@ $(document).ready(function () {
         loadComment(id);
     });
 
+    $(document).on('click','.btnCommentDone',function () {
+        var id=$(this).val();
+        var comment=$('input[id^="comment'+id+'"]').val();
+        console.log(comment);
+        if(comment!=''){
+            createComment(comment,id);
+        }
+    });
+
+    $('#send').click(function () {
+        var post=$('#post').val();
+        console.log(post);
+        if(post!='') {
+            createPost();
+        }
+    });
+
+    function createComment(comment,id) {
+        $.post('/forum/post/' + id + '/comment', {
+                comment: comment
+            }
+            , function (data, status) {
+                loadComment(id);
+
+            });
+    }
+
+    function createPost(){
+        $.post('/forum/post',{
+            post:$('#post').val()}
+            ,function (data,status){
+            loadPost();
+
+        });
+
+
+    }
+
+
     function loadPost(){
         var html='';
         var date;
@@ -18,6 +57,7 @@ $(document).ready(function () {
         };
         $.get('/forum/post',function (post,status){
             var data=post;
+            $("#content").html('');
             //console.log(JSON.stringify(data));
             console.log(data);
             for(var i=0; i<data.length;i++){
@@ -88,13 +128,14 @@ $(document).ready(function () {
                     "</div>" +
                     "</div>";
             }
-            html+="<form method='post' action='/forum/post/"+id+"/comment' >" +
-                "<div class='row p-2'>" +
+            //html+="<form method='post' action='/forum/post/"+id+"/comment' >" +
+             html+="<div class='row p-2'>" +
                 "<div class='col-8 offset-1'>" +
-                "<input type='text' placeholder='Comment' required name='comment' class='form-control'>" +
+                "<input type='text' placeholder='Comment' required name='comment' id='comment"+id+"' class='form-control'>" +
                 "</div>" +
-                "<div class='col-1'><input type='submit' class='btn btn-primary'  value='Done'></div> " +
-                "</div></form>"
+                "<div class='col-1'><button type='button' class='btn btn-primary btnCommentDone'  value='"+id+"'>Done</button></div> " +
+                "</div>" //+
+                //"</form>"
             $("#commentBody").html(html);
             $('#commentModal').modal('show');
 

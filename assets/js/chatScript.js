@@ -27,6 +27,7 @@ $('#send').click(function (){
     sendMessage();
 });
 
+
     function sendMessage (){
         var text=$("#msg").val();
         var name=$("#user_id").val();

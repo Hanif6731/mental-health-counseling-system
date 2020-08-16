@@ -4,16 +4,26 @@ var userModel=require('../models/chat');
 var patientModel=require('../models/patient');
 var sessionModel=require('../models/session');
 var prescriptionModel=require('../models/prescription');
+var chatModel=require('../models/chat');
 
 router.get('/',function (req,res){
     if(req.session.user_id!=null) {
+        // chatModel.getAll(function (results) {
+        //     res.render('chat/index', {user_id: req.session.username,result:results});
+        // });
         res.render('chat/index', {user_id: req.session.username});
     }
     else{
         res.redirect("/login");
     }
 });
-router.post('/ajax',function (req,res){
+router.post('/insert',function (req,res){
+    var chat=req.body;
+    chatModel.insert(chat,function (status){
+        if(status){
+            res.status(201).send(chat);
+        }
+    });
 
 });
 
