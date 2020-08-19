@@ -5,3 +5,19 @@
     height:100%;
     border-left:1px solid gray;
 }
+
+body {
+    background-color: lightblue;
+}
+.card {
+
+    padding-top: 20px;
+    padding-bottom: 50px;
+    box-shadow: 0 0px 20px 0 rgba(0,0,0,0.2);
+    background-color: lightgreen;
+    transition: 0.3s;
+}
+
+.row{
+    padding-top: 20px;
+}

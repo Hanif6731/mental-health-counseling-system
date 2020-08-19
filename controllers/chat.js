@@ -30,7 +30,7 @@ router.post('/insert',function (req,res){
 
 router.get('/session/:p_id',function (req,res){
     var p_id=req.params.p_id;
-    patientModel.get(p_id,function (result){
+    patientModel.getByPID(p_id,function (result){
         userModel.get(result.user_id, function (results){
             var data={
                 user_id:req.session.username,

@@ -9,6 +9,17 @@ var logout =require('./controllers/logout');
 var appointment=require('./controllers/appointment');
 var chat = require('./controllers/chat');
 var forum =require('./controllers/forum');
+var admin  = require('./controllers/admin');
+var staff= require('./controllers/staff');
+var addStaff= require('./controllers/addStaff');
+var payment= require('./controllers/payment');
+var availablePayment= require('./controllers/availablePayment');
+var addSubPlan= require('./controllers/addSubPlan');
+var doctorList= require('./controllers/doctorList');
+var userList= require('./controllers/userList');
+var staffList= require('./controllers/staffList');
+var feedback =require('./controllers/feedback');
+
 var coockieParser=require('cookie-parser');
 var fileUpload=require('express-fileupload');
 //var favicon=require('serve-favicon');
@@ -63,6 +74,17 @@ app.use('/doctor',doctor);
 app.use('/appointment',appointment);
 app.use('/chat',chat);
 app.use('/forum',forum);
+
+app.use('/staff',staff);
+app.use('/addStaff',addStaff);
+app.use('/payment',payment);
+app.use('/availablePayment',availablePayment);
+app.use('/addSubPlan',addSubPlan);
+app.use('/doctorList',doctorList);
+app.use('/userList',userList);
+app.use('/staffList',staffList);
+app.use('/feedback',feedback);
+app.use('/admin',admin);
 
 app.get('/', function(req, res){
     res.redirect('/login');

@@ -23,13 +23,13 @@ router.post('/', function (req,res){
                 res.redirect('/doctor');
             }
             else if(req.session.status=="patient"){
-
+                res.redirect('/patient');
             }
             else if(req.session.status=="staff"){
-
+                res.redirect('/staff');
             }
             else {
-
+                res.redirect('/admin');
             }
         }
         else{
