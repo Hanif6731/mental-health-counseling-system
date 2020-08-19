@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Mental Health Counseling System</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/fa/all.css">
+
 </head>
 <body style="background-color: lavender">
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark text-white">
@@ -65,7 +67,9 @@
         <div class="col-12 col-md-8 offset-md-2">
             <%for(var i=0;i<reviews.length;i++){%>
                 <div class="card mt-2 text-left text-capitalize">
-                    <div class="card-header bg-info text-white "><strong class="h5"><%= reviews[i].name%></strong><i> Rated <%= reviews[i].review%> out of 5!!</i></div>
+                    <div class="card-header bg-info text-white "><strong class="h5"><%= reviews[i].name%></strong><i> Rated <%= reviews[i].review%> out of 5!!</i>
+
+                    </div>
                     <div class="card-body font-weight-bold"><%=reviews[i].feedback%></div>
                 </div>
             <%}%>
@@ -76,5 +80,6 @@
 <script type="application/javascript" src="/jquery/jquery.min.js"></script>
 <script type="application/javascript" src="/popper/popper.min.js"></script>
 <script type="application/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<script type="application/javascript" href="/fa/js/all.js"></script>
 </body>
 </html>

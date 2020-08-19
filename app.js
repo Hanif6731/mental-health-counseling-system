@@ -1,6 +1,7 @@
 var express 	= require('express');
 var exSession 	= require('express-session');
 var bodyParser 	= require('body-parser');
+var patient=require('./controllers/patient');
 var doctor  = require('./controllers/doctor');
 var registration= require('./controllers/registration');
 var login = require('./controllers/login');
@@ -10,6 +11,7 @@ var chat = require('./controllers/chat');
 var forum =require('./controllers/forum');
 var coockieParser=require('cookie-parser');
 var fileUpload=require('express-fileupload');
+//var favicon=require('serve-favicon');
 var app 		= express();
 
 
@@ -36,6 +38,8 @@ app.use('/bootstrap/css', express.static('node_modules/bootstrap/dist/css'));
 app.use('/bootstrap/js', express.static('node_modules/bootstrap/dist/js'));
 app.use('/jquery', express.static('node_modules/jquery/dist'));
 app.use('/popper',express.static('node_modules/popper.js/dist'));
+app.use('/fa',express.static('node_modules/@fortawesome/fontawesome-free/css'));
+app.use('/fa/js',express.static('node_modules/@fortawesome/fontawesome-free/js'));
 app.use('/img',express.static('assets/img'));
 app.use('/files',express.static('assets/files'));
 app.use('/css',express.static('assets/css'));
@@ -51,6 +55,7 @@ app.use('/socket',express.static('node_modules/socket.io-client/dist'));
 //app.use('/doctor',doctor);
 //app.use('/patient',patient);
 
+app.use('/patient',patient);
 app.use('/logout',logout);
 app.use('/registration',registration);
 app.use('/login',login);
