@@ -6,7 +6,15 @@ var commentModel=require('../models/comment');
 
 router.get('/',function (req,res){
     if(req.session.user_id!=null){
-        res.render('forum/index');
+        if(req.session.status=='doctor') {
+            res.render('forum/index');
+        }
+        else if(req.session.status=='staff') {
+            res.render('staff/forum');
+        }
+        else if(req.session.status=='admin') {
+            res.render('admin/forum/index');
+        }
     }
 });
 
